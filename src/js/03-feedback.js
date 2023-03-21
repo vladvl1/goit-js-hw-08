@@ -14,14 +14,17 @@ form.addEventListener('input', throttle(e => {
  
 form.addEventListener('submit', e => {
     e.preventDefault();
+     if (email.value === "" || message.value === "") {
+    return alert("Please fill in all the fields!");
+    }  
     console.log({
         email: email.value,
         message: message.value
     });
+      
     form.reset();
     localStorage.removeItem(LOCALSTORAGE_KEY);
 });
-
 const load = key => {
     try {
         const serialisedState = localStorage.getItem(key);
